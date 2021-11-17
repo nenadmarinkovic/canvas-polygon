@@ -15,11 +15,19 @@ document.getElementById("file").addEventListener("change", function (e) {
   reader.onload = function (f) {
     var data = f.target.result;
     fabric.Image.fromURL(data, function (img) {
-      var oImg = img
-        .set({ left: 0, top: 0, angle: 00, width: 800, height: 600 })
-        .scale(0.9);
+      var oImg = img.set({ left: 0, top: 0, angle: 00 }).scale(1);
+      oImg.scaleToWidth(canvas.width),
+        oImg.scaleToHeight(canvas.height),
+        // var pb = (oImg.height / oImg.width) * 100;
+        // document.getElementById("section").style.paddingBottom = pb + "%";
+        canvas.setBackgroundImage(oImg, canvas.renderAll.bind(canvas), {
+          originX: "left",
+          scaleX: canvas.getWidth() / img.width, //new update
+          scaleY: canvas.getHeight() / img.height, //new update
 
-      canvas.setBackgroundImage(oImg);
+          originY: "top",
+        });
+
       canvas.renderAll();
     });
   };
@@ -36,7 +44,7 @@ $(window).load(function () {
 var prototypefabric = new (function () {
   this.initCanvas = function () {
     canvas.setWidth($(window).width());
-    canvas.setHeight($(window).height() - $("#nav-bar").height());
+    canvas.setHeight($(window).height());
     canvas.on("mouse:down", function (options) {
       if (options.target && options.target.id == pointArray[0].id) {
         prototypefabric.polygon.generatePolygon(pointArray);
@@ -215,8 +223,10 @@ prototypefabric.polygon = {
 function polygonPositionHandler(dim, finalMatrix, fabricObject) {
   var x = fabricObject.points[this.pointIndex].x - fabricObject.pathOffset.x,
     y = fabricObject.points[this.pointIndex].y - fabricObject.pathOffset.y;
+
   return fabric.util.transformPoint(
     { x: x, y: y },
+
     fabric.util.multiplyTransformMatrices(
       fabricObject.canvas.viewportTransform,
       fabricObject.calcTransformMatrix()
@@ -232,7 +242,7 @@ function actionHandler(eventData, transform, x, y) {
       "center",
       "center"
     ),
-    polygonBaseSize = polygon._getNonTransformedDimensions(),
+    polygonBaseSize = polygon._getNonTransformedDimensions(0, 0),
     size = polygon._getTransformedDimensions(0, 0),
     finalPointPosition = {
       x:
@@ -242,7 +252,9 @@ function actionHandler(eventData, transform, x, y) {
         (mouseLocalPosition.y * polygonBaseSize.y) / size.y +
         polygon.pathOffset.y,
     };
+
   polygon.points[currentControl.pointIndex] = finalPointPosition;
+
   canvas.on({
     "touch:gesture": function () {
       var text = document.createTextNode(" Gesture ");

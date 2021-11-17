@@ -9,11 +9,15 @@
     <script src="https://rawgit.com/kangax/fabric.js/master/dist/fabric.min.js"></script>
   </head>
   <body>
-    <input type="file" id="file" />
-    <br />
-    <br />
-    <div class="section no-pad-bot no-pad-top">
-      <canvas id="canvas" width="450" height="450"></canvas>
+    <div class="container">
+      <nav role="navigation" id="nav-bar">
+        <div class="nav-wrapper">
+          <input type="file" id="file" />
+        </div>
+      </nav>
+      <div class="section">
+        <canvas id="canvas"></canvas>
+      </div>
     </div>
 
     <script src="app.js"></script>

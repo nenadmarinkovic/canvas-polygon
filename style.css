@@ -6,3 +6,25 @@
 body {
   overflow: hidden;
 }
+
+.container {
+  width: 100%;
+  max-width: 960px !important;
+  margin: 0 auto;
+}
+
+#section {
+  box-sizing: border-box;
+  position: relative;
+  width: 100%;
+}
+
+.canvas-container {
+  position: absolute !important;
+  width: 98% !important;
+}
+
+.lower-canvas,
+.upper-canvas {
+  width: 98% !important;
+}
