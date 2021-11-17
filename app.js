@@ -15,18 +15,18 @@ document.getElementById("file").addEventListener("change", function (e) {
   reader.onload = function (f) {
     var data = f.target.result;
     fabric.Image.fromURL(data, function (img) {
-      var oImg = img.set({ left: 0, top: 0, angle: 00 }).scale(1);
+      var oImg = img.set({ left: 0, top: 0, angle: 00 }).scale(.95);
       oImg.scaleToWidth(canvas.width),
         oImg.scaleToHeight(canvas.height),
-        // var pb = (oImg.height / oImg.width) * 100;
-        // document.getElementById("section").style.paddingBottom = pb + "%";
-        canvas.setBackgroundImage(oImg, canvas.renderAll.bind(canvas), {
-          originX: "left",
-          scaleX: canvas.getWidth() / img.width, //new update
-          scaleY: canvas.getHeight() / img.height, //new update
+        (document.getElementById("section").style.paddingBottom =
+          (oImg.height / oImg.width) * 100 + "%");
+      canvas.setBackgroundImage(oImg, canvas.renderAll.bind(canvas), {
+        originX: "left",
+        scaleX: canvas.getWidth() / oImg.width, //new update
+        scaleY: canvas.getHeight() / oImg.height, //new update
 
-          originY: "top",
-        });
+        originY: "top",
+      });
 
       canvas.renderAll();
     });
@@ -280,3 +280,8 @@ function actionHandler(eventData, transform, x, y) {
 
   return true;
 }
+
+
+document.getElementById("refresh").addEventListener("mouseup", function (e) {
+  window.location.reload();
+})

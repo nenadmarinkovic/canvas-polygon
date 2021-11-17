@@ -12,10 +12,15 @@
     <div class="container">
       <nav role="navigation" id="nav-bar">
         <div class="nav-wrapper">
-          <input type="file" id="file" />
+          <label class="custom-file-upload">
+            <input type="file" id="file" />
+            Upload Image
+          </label>
+
+          <button type="button" id="refresh">Refresh</button>
         </div>
       </nav>
-      <div class="section">
+      <div id="section">
         <canvas id="canvas"></canvas>
       </div>
     </div>

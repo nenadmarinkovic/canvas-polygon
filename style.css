@@ -5,12 +5,31 @@
 
 body {
   overflow: hidden;
+  margin: 10px;
 }
 
-.container {
-  width: 100%;
-  max-width: 960px !important;
-  margin: 0 auto;
+#nav-bar {
+  margin: 20px 0;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+#refresh {
+  background: transparent;
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 10px 12px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.custom-file-upload {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 10px 12px;
+  cursor: pointer;
 }
 
 #section {
@@ -21,10 +40,10 @@ body {
 
 .canvas-container {
   position: absolute !important;
-  width: 98% !important;
+  width: 100% !important;
 }
 
 .lower-canvas,
 .upper-canvas {
-  width: 98% !important;
+  width: 100% !important;
 }
