@@ -47,3 +47,7 @@ input[type="file"] {
 .upper-canvas {
   width: 100% !important;
 }
+
+img {
+  image-orientation: from-image;
+}
